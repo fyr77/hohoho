@@ -24,20 +24,22 @@
     </header>
 	<main>
         <h1 class="w3-center">HoHoHo! / Brainfuck converter</h1>
-        <div class="w3-container w3-red w3-center">
-            <h3>HoHoHo!</h3>
-            <p><textarea style="width: 100%; height: 20vh;" id="hohoho_code"></textarea></p>
-        </div>
-        <div class="w3-container w3-green w3-center">
-            <h3>Brainfuck</h3>
-            <p><textarea style="width: 100%; height: 20vh;" id="brainfuck_code"></textarea></p>
+        <div class="w3-row">
+            <div class="w3-col m4 w3-red w3-center">
+                <h3><button onclick="ho();">HoHoHo</button></h3>
+                <p><textarea style="width: 90%; height: 30vh;" id="hohoho_code"></textarea></p>
+            </div>
+            <div class="w3-col m4 w3-green w3-center">
+                <h3><button onclick="bf();">Brainfuck</button></h3>
+                <p><textarea style="width: 90%; height: 30vh;" id="brainfuck_code"></textarea></p>
+            </div>
+            <div class="w3-col m4 w3-dark-grey w3-center">
+                <h3><button onclick="txt();">Text</button></h3>
+                <p><textarea style="width: 90%; height: 30vh;" id="text_code"></textarea></p>
+            </div>
         </div>
         <div class="w3-container w3-light-gray w3-center">
             <p>
-                <button onclick="ho_to_bf();">HoHoHo to Brainfuck</button>
-                <br>
-                <button onclick="bf_to_ho();">Brainfuck to HoHoHo</button>
-                <br>
                 <input type="checkbox" id="simple_hoho" name="Simple Hoho">
                 <label for="simple_hoho">Simple Hoho</label>
             </p>
@@ -51,64 +53,6 @@
         <p>There is also a simplified, less Turing-complete version called "Simple Hoho".</p>
         <p>All details regarding HoHoHo! can be found in the <a href="https://arxiv.org/pdf/1712.06259.pdf" target="_blank">corresponding paper</a>.</p>
     </footer>
-	<script type="text/javascript">
-        function ho_to_bf() {
-            var isSimpleHoho = document.getElementById("simple_hoho").checked;
-            var hofield = document.getElementById("hohoho_code");
-            var bffield = document.getElementById("brainfuck_code");
-            var hocode = hofield.value;
-            hocode = hocode.replace(/[^a-zA-Z]/g, ""); //Remove special characters
-            
-            if (isSimpleHoho) {
-                hocode = hocode.replace(/(\w{4})/g, '$1 ').replace(/(^\s+|\s+$)/,''); //Space after each set of 4 characters
-                var bfcode = hocode.replace(/hoHo/g, "+");
-                bfcode = bfcode.replace(/Hoho/g, "-");
-                bfcode = bfcode.replace(/HoHo/g, ">");
-                bfcode = bfcode.replace(/hoho/g, ".");
-                bfcode = bfcode.replace(/[\s]/g, ""); //Remove whitespaces
-            }
-            else {
-                hocode = hocode.replace(/(\w{6})/g, '$1 ').replace(/(^\s+|\s+$)/,''); //Space after each set of 6 characters
-                var bfcode = hocode.replace(/HoHoHo/g, "+");
-                bfcode = bfcode.replace(/hohoho/g, "-");
-                bfcode = bfcode.replace(/HoHoho/g, ">");
-                bfcode = bfcode.replace(/hoHoHo/g, "<");
-                bfcode = bfcode.replace(/Hohoho/g, "[");
-                bfcode = bfcode.replace(/hohoHo/g, "]");
-                bfcode = bfcode.replace(/hoHoho/g, ".");
-                bfcode = bfcode.replace(/HohoHo/g, ",");
-                bfcode = bfcode.replace(/[\s]/g, ""); //Remove whitespaces
-            }
-            bffield.value = bfcode;
-        }
-        function bf_to_ho() {
-            var isSimpleHoho = document.getElementById("simple_hoho").checked;
-            var hofield = document.getElementById("hohoho_code");
-            var bffield = document.getElementById("brainfuck_code");
-            var bfcode = bffield.value;
-            bfcode = bfcode.replace(/[a-zA-Z ]/g, ""); //Remove nonspecial characters
-            
-            if (isSimpleHoho) {
-                bfcode = bfcode.replace(/[\<\[\]\,]/g, ""); //Remove unsupported characters
-                var hocode = bfcode.replace(/\+/g, "hoHo");
-                hocode = hocode.replace(/\-/g, "Hoho");
-                hocode = hocode.replace(/\>/g, "HoHo");
-                hocode = hocode.replace(/\./g, "hoho");
-                hocode = hocode.replace(/(H[oOh]*)/g, '$1! ').replace(/(^\s+|\s+$)/,''); //Group into Hohoho groups startinh with capital letter
-            }
-            else {
-                var hocode = bfcode.replace(/\+/g, "HoHoHo");
-                hocode = hocode.replace(/\-/g, "hohoho");
-                hocode = hocode.replace(/\>/g, "HoHoho");
-                hocode = hocode.replace(/\</g, "hoHoHo");
-                hocode = hocode.replace(/\[/g, "Hohoho");
-                hocode = hocode.replace(/\]/g, "hohoHo");
-                hocode = hocode.replace(/\./g, "hoHoho");
-                hocode = hocode.replace(/\,/g, "HohoHo");
-                hocode = hocode.replace(/(H[oOh]*)/g, '$1! ').replace(/(^\s+|\s+$)/,''); //Group into Hohoho groups startinh with capital letter
-            }
-            hofield.value = hocode;
-        }
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <textarea id="testa"></textarea>
+    <textarea id="func"></textarea>
+    <textarea id="instr"></textarea>
+    <script>
+        function doReq() {
+            const instr = document.getElementById("instr").value.replace(/\+/g, "%2B"); //necessary for encoding
+            const options = {
+                method: 'POST',
+                body: `func=${document.getElementById("func").value}&instr=${instr}`,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }
+            console.log(options.body);
+            fetch('https://dev.jakobsenkl.pw/hohoho/api.php', options)
+                .then(res => res.text())
+                .then(res => (document.getElementById("testa").value = res))
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+
+</html>
