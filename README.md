@@ -1,7 +1,7 @@
 # hohoho
 A HoHoHo! to Brainfuck converter.
 
-All information can be found on the website itself: hohoho.jakobsenkl.pw
+All information can be found on the website itself: https://hohoho.jakobsenkl.pw
 
 ## Thanks
 
