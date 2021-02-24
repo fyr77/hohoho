@@ -79,7 +79,7 @@ function interpret() {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }
-    fetch('https://dev.jakobsenkl.pw/hohoho/api.php', options)
+    fetch('/api/api.php', options)
         .then(res => res.text())
         .then(res => (document.getElementById("text_code").value = res))
         .catch(err => console.error(err));
@@ -93,7 +93,7 @@ function tobf() {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }
-    let promise = fetch('https://dev.jakobsenkl.pw/hohoho/api.php', options)
+    let promise = fetch('/api/api.php', options)
         .then(res => res.text())
         .then(res => (document.getElementById("brainfuck_code").value = res))
         .catch(err => console.error(err));
